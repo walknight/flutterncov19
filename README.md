@@ -19,5 +19,13 @@ samples, guidance on mobile development, and a full API reference.
 - API : [Covid 19 API](https://github.com/novelcovid/api) 
 - UI : [UI](https://github.com/mahtab-ali/fitness_app_ui)
 
+## Donating
+
+If this code is usefull for you, treat me a cup of coffee, with click this link :
+
+[Link PayPal](https://paypal.me/ifcode?locale.x=id_ID)
+
+Thank's :)
+
 ## License
 MIT License
