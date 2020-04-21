@@ -16,5 +16,8 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## Credits
-API : [Covid 19 API](https://github.com/novelcovid/api) 
-UI : [UI](https://github.com/mahtab-ali/fitness_app_ui)
+- API : [Covid 19 API](https://github.com/novelcovid/api) 
+- UI : [UI](https://github.com/mahtab-ali/fitness_app_ui)
+
+## License
+MIT License
