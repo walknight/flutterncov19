@@ -22,30 +22,29 @@ class _HomeState extends State<Home> {
   int _maxItemPrint = 8;
   int _maxData;
 
-  
   gridView(BuildContext context, AsyncSnapshot<List<Countries>> snapshot) {
     //get total data
     _maxData = snapshot.data.length;
     return Padding(
       padding: EdgeInsets.all(5.0),
       child: GridView.builder(
-        physics: ScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: _maxItemPrint,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 4.0, mainAxisSpacing: 4.0), 
-        itemBuilder: (context, int index){          
-          return GestureDetector(
-            child: CountryCell(snapshot.data[index]),
-            onTap:()=> 
-              //clickCell(snapshot.data[index])
-              /* Navigator.of(context).push(MaterialPageRoute(
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: _maxItemPrint,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, crossAxisSpacing: 4.0, mainAxisSpacing: 4.0),
+          itemBuilder: (context, int index) {
+            return GestureDetector(
+              child: CountryCell(snapshot.data[index]),
+              onTap: () =>
+                  //clickCell(snapshot.data[index])
+                  /* Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) => CountryDetail(snapshot.data[index])
               )) */
-              Navigator.pushNamed(context, CountryDetail.id, arguments: snapshot.data[index])
-            ,
-          );
-        }
-      ),
+                  Navigator.pushNamed(context, CountryDetail.id,
+                      arguments: snapshot.data[index]),
+            );
+          }),
     );
   }
 
@@ -55,9 +54,9 @@ class _HomeState extends State<Home> {
     dataAll = APIService.getAllData();
     dataCountries = APIService.getDataAllCountries();
     _scrollController.addListener(() {
-      if(_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
-        if(_maxItemPrint <= _maxData-1)
-        {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        if (_maxItemPrint <= _maxData - 1) {
           print(_maxItemPrint);
           _getMoreData();
         }
@@ -65,7 +64,7 @@ class _HomeState extends State<Home> {
     });
   }
 
-  _getMoreData(){
+  _getMoreData() {
     //print("Get More Data");
     _maxItemPrint = _maxItemPrint + 4;
     setState(() {});
@@ -109,14 +108,20 @@ class _HomeState extends State<Home> {
                       FutureBuilder<AllData>(
                         future: dataAll,
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
                             return Center(
                               child: CircularProgressIndicator(),
                             );
                           } else {
                             //print(snapshot.hasData);
                             if (snapshot.hasData) {
-                              return NumberData(cases: snapshot.data.cases, updated: snapshot.data.updated, deaths: snapshot.data.deaths, recovered: snapshot.data.recovered,);
+                              return NumberData(
+                                cases: snapshot.data.cases,
+                                updated: snapshot.data.updated,
+                                deaths: snapshot.data.deaths,
+                                recovered: snapshot.data.recovered,
+                              );
                             } else {
                               return Text('No Data');
                             }
@@ -149,7 +154,8 @@ class _HomeState extends State<Home> {
                       FutureBuilder<List<Countries>>(
                         future: dataCountries,
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
                             return Center(
                               child: CircularProgressIndicator(),
                             );
