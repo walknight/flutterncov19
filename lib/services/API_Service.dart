@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutterncov19/model/HistoryData.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutterncov19/model/AllData.dart';
 import 'package:flutterncov19/model/CountriesData.dart';
@@ -9,6 +10,7 @@ class APIService{
   static final url = 'https://corona.lmao.ninja/v2/';
   static final getAll = 'all';
   static final getCountries = 'countries';
+  static final getHistory = 'historical';
 
   //Method to call All Data
   static Future<AllData> getAllData() async{
@@ -60,6 +62,20 @@ class APIService{
   static List<Countries> parseResponse(String responseBody){
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<Countries>((json) => Countries.fromJson(json)).toList();
+  }
+
+  static Future<History> getHistoryCountryData(String countryID) async{
+    try{
+      final response = await http.get(url + getHistory + '/' + countryID + '?lastdays=5');
+      if(response.statusCode == 200){
+        final json = jsonDecode(response.body);
+        return History.fromJson(json);
+      } else {
+        return null;
+      }
+    } catch(e) {
+      return null; // return empty
+    }
   }
 
 }
