@@ -7,7 +7,8 @@ import 'package:flutterncov19/model/CountriesData.dart';
 //Class to call API Service
 
 class APIService{
-  static final url = 'https://corona.lmao.ninja/v2/';
+  //static final url = 'https://corona.lmao.ninja/v2/';
+  static final url = 'https://disease.sh/v2/';
   static final getAll = 'all';
   static final getCountries = 'countries';
   static final getHistory = 'historical';
